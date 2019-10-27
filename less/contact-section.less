@@ -1,0 +1,49 @@
+// out: ../css/contact-section.css
+
+@black: #212121;
+@blue: #0066FF;
+@white: #FFFFFF;
+@gray: #EAEAEA;
+
+.contact-section-content {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.contact-section {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+form {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 524px;
+    margin: auto;
+    > input {
+        padding: 25px;
+        margin: 20px 0 20px 0;
+        border: none;
+        &::placeholder {
+            font-family: 'Archivo Black';
+            color: #000000;
+        }
+    }
+}
+
+.starship-image {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    width: 100%;
+    max-width: 570px;
+}
+
+.contact-background {
+    top: 50%;
+    transform: translateY(-50%);
+    height: 497px;
+}
