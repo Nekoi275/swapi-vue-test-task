@@ -1,0 +1,61 @@
+// out: ../css/card-component.css
+
+@black: #212121;
+@blue: #0066FF;
+@white: #FFFFFF;
+@gray: #EAEAEA;
+
+.card {
+    width: 235px; 
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    .card-header {
+        height: 220px;
+        background-color: @black;
+        color: @white;
+        position: relative;
+        border-radius: 11px;
+        padding: 15px;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        h5 {
+            margin-top: 115px;
+        }
+
+        .card-open-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 100px;
+            background-color: @white;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: none;
+        }
+
+        &:hover {
+            background-color: @blue;
+
+            .card-open-icon {
+                display: block;
+            }
+        }
+    }
+    
+    .card-content {
+        > h1 {
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 0 5px 0;
+        }
+        > ul {
+            > li {
+                padding: 5px 0 5px 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+// out: ../css/top-section.css
+
+@black: #212121;
+@blue: #0066FF;
+@white: #FFFFFF;
+
+.stormtrooper {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    display: flex;
+    margin: auto;
+    width: 100%;
+    max-width: 412px;
+}
+
+.large-text {
+    color: @white;
+    font-family: 'Archivo Black';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 132px;
+    line-height: 78.1%;
+    position: relative;
+    z-index: 2;
+}
+
+.background {
+    position: absolute;
+    height: 477px;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.top-section-content {
+    position: relative;
+    box-sizing: border-box;
+}
+
+@media (min-width: 0) {
+    .top-section-content {
+        padding-top: 0;
+    }
+
+    .large-text {
+        font-size: 60px;
+        margin-top: 0;
+        position: absolute;
+        top: 302px;
+    }
+}
+
+@media (min-width: 600px) {
+    .large-text {
+        font-size: 80px;
+    }
+}
+
+@media (min-width: 900px) {
+    .large-text {
+        font-size: 100px;
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .top-section-content {
+        padding-top: 100px;
+    }
+
+    .large-text {
+        font-size: 132px;
+    }
+}

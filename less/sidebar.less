@@ -1,0 +1,34 @@
+// out: ../css/sidebar.css
+
+@black: #212121;
+@blue: #0066FF;
+@white: #FFFFFF;
+@gray: #EAEAEA;
+
+.sidebar {
+    padding: 20px;
+    border: 1px solid @gray;
+    box-sizing: border-box;
+
+    .pilots-header {
+        display: flex;
+        h2 {
+            flex: 80%;
+        }
+        .counter {
+            flex: 20%;
+            padding-top: 35px;
+        }
+    }
+
+    input, span {
+        display: inline;
+        padding: 20px 0 0 20px;
+    }
+
+    .view-all {
+        display: block;
+        cursor: pointer;
+        padding-left: 0;
+    }
+}

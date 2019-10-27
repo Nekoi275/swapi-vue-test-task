@@ -1,0 +1,33 @@
+// out: ../css/dropdown.css
+
+@black: #212121;
+@blue: #0066FF;
+@white: #FFFFFF;
+@gray: #EAEAEA;
+
+.dropdown {
+    background-color: @black;
+    color: @white;
+    width: 270px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    z-index: 6;
+    
+    > .dropdown-content {
+        display: none;
+        text-align: left;
+        > li {
+            padding: 15px;
+            &:hover {
+                background-color: #666464;
+            }
+        }
+    }
+
+    &:hover {
+        > .dropdown-content {
+            display: block;
+        }
+    }
+}
