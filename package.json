@@ -12,5 +12,8 @@
     "gulp": "^4.0.2",
     "gulp-less": "^4.0.1",
     "gulp-lesshint": "^6.1.0"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
   }
 }

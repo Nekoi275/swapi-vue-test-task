@@ -3,7 +3,7 @@ const lesshint = require('gulp-lesshint');
 const less = require('gulp-less');
 
 gulp.task('lint', () => {
-    return  gulp.src('less/*.less')
+    return  gulp.src('src/less/*.less')
             .pipe( lesshint({}) )
             .pipe( lesshint.reporter() ) 
             .pipe( lesshint.failOnError() ) 
@@ -11,9 +11,9 @@ gulp.task('lint', () => {
 });
 
 gulp.task('styles', () => {
-    return  gulp.src('less/*.less')
+    return  gulp.src('src/less/*.less')
             .pipe( less() )
-            .pipe( gulp.dest('css/') );
+            .pipe( gulp.dest('public/css/') );
 });
 
 exports.default = gulp.series( gulp.task('lint'), gulp.task('styles') );
