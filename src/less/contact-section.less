@@ -1,5 +1,4 @@
 // out: ../css/contact-section.css
-// out: ../css/contact-section.css
 
 @black: #212121;
 @blue: #0066FF;
@@ -13,7 +12,7 @@
 
 .contact-section {
     margin-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 form {
@@ -22,8 +21,8 @@ form {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    max-width: 524px;
     margin: auto;
+    width: 80%;
     > input {
         padding: 25px;
         margin: 20px 0 20px 0;
@@ -43,8 +42,18 @@ form {
     max-width: 570px;
 }
 
-.contact-background {
-    top: 50%;
-    transform: translateY(-50%);
-    height: 497px;
+@media (min-width: 0) {
+    .contact-background {
+        transform: none;
+        top: 20px;
+        height: 100%;
+    }
+}
+
+@media (min-width: 900px) {
+    .contact-background {
+        top: 50%;
+        transform: translateY(-50%);
+        height: 497px;
+    }
 }

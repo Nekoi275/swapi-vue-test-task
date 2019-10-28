@@ -1,3 +1,5 @@
+// out: ../css/card-component.css
+
 @black: #212121;
 @blue: #0066FF;
 @white: #FFFFFF;
@@ -5,7 +7,6 @@
 
 .card {
     display: flex;
-    width: 30%;
     margin: auto;
     margin-bottom: 10px;
     flex-direction: column;
@@ -56,5 +57,23 @@
                 padding: 5px 0 5px 0;
             }
         }
+    }
+}
+
+@media (min-width: 0) {
+    .card {
+        width: 100%;
+    }
+}
+
+@media (min-width: 600px) {
+    .card {
+        width: 45%;
+    }
+}
+
+@media (min-width: 900px) {
+    .card {
+        width: 30%;
     }
 }
