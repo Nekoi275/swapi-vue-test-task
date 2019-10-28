@@ -1,5 +1,3 @@
-// out: ../css/main.css
-
 @black: #212121;
 @blue: #0066FF;
 @white: #FFFFFF;
@@ -33,14 +31,6 @@ h1, h2, h3, h4, h5, h6, ul, li, a, span, div, p {
 
     &.sign-up-button {
         width: 160px;
-    }
-
-    &.drop-button {
-        width: 240px;
-        text-align: left;
-        > span {
-            margin-right: 85px;
-        }
     }
 
     &.show-more-button {
@@ -145,14 +135,36 @@ h4 {
     margin-bottom: 90px;
 }
 
+.show-filters-icon {
+    margin-left: auto;
+    cursor: pointer;
+}
+
 @media (min-width: 0) {
     .our-starships {
         transform: none;
+    }
+
+    .button {
+        &.drop-button {
+            width: 230px;
+            > span {
+                margin-right: 75px;
+            }
+        }
     }
 }
 
 @media (min-width: 900px) {
     .our-starships {
         transform: rotate(270deg);
+    }
+    .button {
+        &.drop-button {
+            width: 240px;
+            > span {
+                margin-right: 85px;
+            }
+        }
     }
 }
