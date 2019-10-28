@@ -3,7 +3,6 @@
 @black: #212121;
 @blue: #0066FF;
 @white: #FFFFFF;
-@gray: #EAEAEA;
 
 html, body {
 	margin: 0;
@@ -61,6 +60,21 @@ h1, h2, h3, h4, h5, h6, ul, li, a, span, div, p {
     &.drop-button {
         justify-content: space-between;
         display: flex;
+        border-bottom: 1px solid @white;
+        > .open-drop-down {
+            display: block;
+        }
+        > .close-drop-down {
+            display: none;
+        }
+        &:hover {
+            > .open-drop-down {
+                display: none;
+            }
+            > .close-drop-down {
+                display: block;
+            }
+        }
     }
 
     &:hover {

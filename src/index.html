@@ -82,9 +82,11 @@
                             <div class="dropdown">
                                 <div class="button drop-button">
                                     <span>BY CREW SIZE</span>
-                                    <img src="img/drop-icon.svg">
+                                    <img class="open-drop-down" src="img/drop-icon.svg">
+                                    <img class="close-drop-down" src="img/up-drop-icon.svg">
                                 </div>
                                 <ul class="dropdown-content">
+                                    <li>BY CREW SIZE</li>
                                     <li>COST IN CREDITS</li>
                                     <li>MGLT NUMBER</li>
                                 </ul>
@@ -111,96 +113,11 @@
                                 <h2>Crew size</h2>
                                 <input type="range"></range>
                             </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>EX</h5>
-                                    <h4>MGLT:40</h4>
-                                    <div class="card-open-icon" style="background-image: url(img/card-open-icon.svg);">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h1>Executor</h1>
-                                    <ul>
-                                        <li>Lorem</li>
-                                        <li>Ipsum</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>EX</h5>
-                                    <h4>MGLT:40</h4>
-                                    <div class="card-open-icon" style="background-image: url(img/card-open-icon.svg);">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h1>Executor</h1>
-                                    <ul>
-                                        <li>Lorem</li>
-                                        <li>Ipsum</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>EX</h5>
-                                    <h4>MGLT:40</h4>
-                                    <div class="card-open-icon" style="background-image: url(img/card-open-icon.svg);">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h1>Executor</h1>
-                                    <ul>
-                                        <li>Lorem</li>
-                                        <li>Ipsum</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>EX</h5>
-                                    <h4>MGLT:40</h4>
-                                    <div class="card-open-icon" style="background-image: url(img/card-open-icon.svg);">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h1>Executor</h1>
-                                    <ul>
-                                        <li>Lorem</li>
-                                        <li>Ipsum</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>EX</h5>
-                                    <h4>MGLT:40</h4>
-                                    <div class="card-open-icon" style="background-image: url(img/card-open-icon.svg);">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h1>Executor</h1>
-                                    <ul>
-                                        <li>Lorem</li>
-                                        <li>Ipsum</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>EX</h5>
-                                    <h4>MGLT:40</h4>
-                                    <div class="card-open-icon" style="background-image: url(img/card-open-icon.svg);">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h1>Executor</h1>
-                                    <ul>
-                                        <li>Lorem</li>
-                                        <li>Ipsum</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <card v-for="starship in shownStarships" v-bind:name="starship.name"
+                                v-bind:crew="starship.crew" v-bind:mglt="starship.MGLT"
+                                v-bind:shortname="starship.short_name" v-bind:cr="starship.cost_in_credits"
+                                v-bind:psngs="starship.passengers">
+                            </card>
                         </div>
                         <div class="row-4">
                             <div class="button show-more-button">
@@ -249,7 +166,6 @@
                 </nav>
             </div>
         </div>
-    </div>
     </div>
     <script src="../node_modules/vue/dist/vue.js"></script>
     <script src="js/main.js"></script>

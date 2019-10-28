@@ -3,7 +3,6 @@
 @black: #212121;
 @blue: #0066FF;
 @white: #FFFFFF;
-@gray: #EAEAEA;
 
 .dropdown {
     background-color: @black;
@@ -21,7 +20,7 @@
         > li {
             padding: 15px;
             &:hover {
-                background-color: #666464;
+                color: #666464;
                 border-radius: 3px;
             }
         }
@@ -30,6 +29,14 @@
     &:hover {
         > .dropdown-content {
             display: block;
+        }
+        > .drop-button {
+            > .open-drop-down {
+                display: none;
+            }
+            > .close-drop-down {
+                display: block;
+            }
         }
     }
 }
