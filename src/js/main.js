@@ -17,16 +17,17 @@ Vue.component('card', {
         '</div>',
 });
 
-
-
-
 var app = new Vue({
     el: "#home",
     data: {
         starshipsArr: [],
         shownStarships: [],
         nextUrl: 'https://swapi.co/api/starships/',
-        moreStarships: true
+        moreStarships: true,
+        sorting: {
+            param: '',
+            text: 'SORT'
+        }
     },
     methods: {
         shortNames: function (name) {
@@ -43,6 +44,7 @@ var app = new Vue({
                     ship.short_name = app.shortNames(ship.name);
                     return ship;
                 });
+            this.sortShips(this.shownStarships, this.sorting.param, this.sorting.text);
         },
 
         showMoreStarships: function () {
@@ -61,6 +63,24 @@ var app = new Vue({
                 var nextShips = this.starshipsArr.slice(this.shownStarships.length, this.shownStarships.length + 6);
                 this.showStarships(nextShips);
             }
+        },
+
+        sortBy: function (param) {
+            return function (a, b) {
+                if (a[param] === 'unknown' ) {
+                    return 1;
+                }
+                if (b[param] === 'unknown' ) {
+                    return -1;
+                }
+                return a[param] - b[param];
+            }
+        },
+
+        sortShips: function (shipsArr, param, sortingText) {
+            this.sorting.text = sortingText;
+            this.sorting.param = param;
+            return this.shownStarships = shipsArr.slice().sort(this.sortBy(param));
         },
 
         getData: function (url) {
