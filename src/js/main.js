@@ -24,39 +24,61 @@ var app = new Vue({
     el: "#home",
     data: {
         starshipsArr: [],
-        shownStarships: []
+        shownStarships: [],
+        nextUrl: 'https://swapi.co/api/starships/',
+        moreStarships: true
     },
     methods: {
         shortNames: function (name) {
-            if ( !name.match(/[\s-]/g) ) {
-                return name.slice(0, 2).toUpperCase();
+            if (!name.match(/[\s-]/g)) {
+                return name.slice(0, 2);
             } else {
-                return name.match(/\b(\w)/g).join('').toUpperCase();
+                return name.match(/\b(\w)/g).join('');
             }
         },
 
-        showFirstStarships: function () {
-            this.shownStarships = this.shownStarships.concat(this.starshipsArr.slice(0, 6)
+        showStarships: function (shipsToShow) {
+            this.shownStarships = this.shownStarships.concat(shipsToShow)
                 .map(function (ship) {
                     ship.short_name = app.shortNames(ship.name);
                     return ship;
-                }));
+                });
+        },
+
+        showMoreStarships: function () {
+            var lastShips = this.starshipsArr.slice(this.shownStarships.length, this.starshipsArr.length);
+            if (lastShips.length < 6) {
+                if (this.nextUrl) {
+                    this.getData(this.nextUrl).then(function () {
+                        var nextShips = app.starshipsArr.slice(app.shownStarships.length, app.shownStarships.length + 6);
+                        app.showStarships(nextShips);
+                    });
+                } else {
+                    this.showStarships(lastShips);
+                    this.moreStarships = false;
+                }
+            } else {
+                var nextShips = this.starshipsArr.slice(this.shownStarships.length, this.shownStarships.length + 6);
+                this.showStarships(nextShips);
+            }
         },
 
         getData: function (url) {
-            fetch(url)
+            return fetch(url)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (data) {
+                    app.nextUrl = data.next;
                     app.starshipsArr = app.starshipsArr.concat(data.results);
-                    app.showFirstStarships();
                 });
         }
     },
 
     mounted: function () {
-        this.getData('https://swapi.co/api/starships/');
+        this.getData(this.nextUrl).then(function () {
+            app.showStarships(app.starshipsArr.slice(0, 6));
+        });
     }
 });
 
