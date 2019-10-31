@@ -99,10 +99,10 @@
                                     <img class="close-drop-down" src="img/up-drop-icon.svg">
                                 </div>
                                 <ul class="dropdown-content">
-                                    <li v-on:click="sortShips(shownStarships, 'crew', 'BY CREW SIZE')">BY CREW SIZE</li>
-                                    <li v-on:click="sortShips(shownStarships, 'cost_in_credits', 'COST IN CREDITS')">
+                                    <li v-on:click="sortShips('crew', 'BY CREW SIZE')">BY CREW SIZE</li>
+                                    <li v-on:click="sortShips('cost_in_credits', 'COST IN CREDITS')">
                                         COST IN CREDITS</li>
-                                    <li v-on:click="sortShips(shownStarships, 'MGLT', 'MGLT NUMBER')">MGLT NUMBER</li>
+                                    <li v-on:click="sortShips('MGLT', 'MGLT NUMBER')">MGLT NUMBER</li>
                                 </ul>
                             </div>
                             <span class="counter blue-text filters-counter">()</span>

@@ -56,8 +56,8 @@ var app = new Vue({
         filteredPilots: []
     },
     watch: {
-        filteredPilots: function(newPilots) {
-            this.applyFilters(newPilots)
+        filteredPilots: function() {
+            this.showStarShips();
         }
     },
     methods: {
@@ -69,33 +69,35 @@ var app = new Vue({
             }
         },
 
-        showStarships: function (shipsToShow) {
-            this.shownStarships = this.shownStarships.concat(shipsToShow)
+        showStarShips: function (shipsToShow) {
+            this.shownStarships = this.starshipsArr.slice(0, this.shownStarshipsCount);
+            if (shipsToShow) {
+                this.shownStarships = this.shownStarships.concat(shipsToShow)
                 .map(function (ship) {
                     ship.short_name = app.shortNames(ship.name);
                     return ship;
                 });
-            this.sortShips(this.shownStarships, this.sorting.param, this.sorting.text);
+                this.shownStarshipsCount = this.shownStarships.length;
+            }
+            this.applyFilters();
+            this.sortShips(this.sorting.param, this.sorting.text);
         },
 
         showMoreStarships: function () {
-            var lastShips = this.starshipsArr.slice(this.shownStarships.length, this.starshipsArr.length);
+            var lastShips = this.starshipsArr.slice(this.shownStarshipsCount, this.starshipsArr.length);
             if (lastShips.length < 6) {
                 if (this.nextUrl) {
                     this.getData(this.nextUrl, this.processStarshipsData).then(function () {
-                        var nextShips = app.starshipsArr.slice(app.shownStarships.length, app.shownStarships.length + 6);
-                        app.showStarships(nextShips);
+                        var nextShips = app.starshipsArr.slice(app.shownStarshipsCount, this.shownStarshipsCount + 6);
+                        app.showStarShips(nextShips);
                     });
-                    this.shownStarshipsCount = this.shownStarships.length;
                 } else {
-                    this.showStarships(lastShips);
+                    this.showStarShips(lastShips);
                     this.moreStarships = false;
-                    this.shownStarshipsCount = this.shownStarships.length;
                 }
             } else {
-                var nextShips = this.starshipsArr.slice(this.shownStarships.length, this.shownStarships.length + 6);
-                this.showStarships(nextShips);
-                this.shownStarshipsCount = this.shownStarships.length;
+                var nextShips = this.starshipsArr.slice(this.shownStarshipsCount, this.shownStarshipsCount + 6);
+                this.showStarShips(nextShips);
             }
         },
 
@@ -111,10 +113,10 @@ var app = new Vue({
             }
         },
 
-        sortShips: function (shipsArr, param, sortingText) {
+        sortShips: function (param, sortingText) {
             this.sorting.text = sortingText;
             this.sorting.param = param;
-            return this.shownStarships = shipsArr.slice().sort(this.sortBy(param));
+            return this.shownStarships = this.shownStarships.slice().sort(this.sortBy(param));
         },
 
         processStarshipsData: function (data) {
@@ -122,12 +124,16 @@ var app = new Vue({
             app.starshipsArr = app.starshipsArr.concat(data.results);
         },
 
-        applyFilters: function (filtersArr) {
+        applyFilters: function () {
             var filterByPilots = function (ship) {
-                var intersection = ship.pilots.filter(function (pilot) {
-                    return filtersArr.indexOf(pilot) !== -1;
-                });
-                return intersection.length > 0;
+                if (!app.filteredPilots.length) {
+                    return true;
+                } else {
+                    var intersection = ship.pilots.filter(function (pilot) {
+                        return app.filteredPilots.indexOf(pilot) !== -1;
+                    });
+                    return intersection.length > 0;
+                }
             }
 
             this.shownStarships = this.shownStarships.filter(filterByPilots);
@@ -155,7 +161,7 @@ var app = new Vue({
 
     mounted: function () {
         this.getData(this.nextUrl, this.processStarshipsData).then(function () {
-            app.showStarships(app.starshipsArr.slice(0, 6));
+            app.showStarShips(app.starshipsArr.slice(0, 6));
         });
 
         this.getPeople('https://swapi.co/api/people/');
