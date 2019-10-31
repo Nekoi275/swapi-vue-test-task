@@ -56,7 +56,7 @@ var app = new Vue({
         filteredPilots: []
     },
     watch: {
-        filteredPilots: function() {
+        filteredPilots: function () {
             this.showStarShips();
         }
     },
@@ -69,14 +69,18 @@ var app = new Vue({
             }
         },
 
+        scrollToTop: function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
         showStarShips: function (shipsToShow) {
             this.shownStarships = this.starshipsArr.slice(0, this.shownStarshipsCount);
             if (shipsToShow) {
                 this.shownStarships = this.shownStarships.concat(shipsToShow)
-                .map(function (ship) {
-                    ship.short_name = app.shortNames(ship.name);
-                    return ship;
-                });
+                    .map(function (ship) {
+                        ship.short_name = app.shortNames(ship.name);
+                        return ship;
+                    });
                 this.shownStarshipsCount = this.shownStarships.length;
             }
             this.applyFilters();
