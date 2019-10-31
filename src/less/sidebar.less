@@ -17,19 +17,43 @@
         }
         .counter {
             flex: 20%;
-            padding-top: 35px;
+            padding-top: 20px;
         }
     }
 
-    input, span {
+    input, label {
         display: inline;
-        padding: 20px 0 0 20px;
+        margin: 20px 0 0 20px;
+    }
+
+    input {
+        cursor: pointer;
     }
 
     .view-all {
         display: block;
         cursor: pointer;
         padding-left: 0;
+    }
+
+    .min, .max {
+        width: 30px;
+        height: 20px;
+        text-align: center;
+        border: 1px solid rgb(212, 212, 212);
+        color: @blue;
+        font-size: 12px;;
+    }
+
+    .range-values {
+        display: flex;
+        justify-content: space-between;
+        &.min {
+            flex: 80%;
+        }
+        &.max {
+            flex: 20%;
+        }
     }
 }
 
@@ -46,5 +70,34 @@
     text-align: center;
     > span {
         font-weight: bold;
+    }
+}
+
+.noUi-target {
+    height: 3px;
+    margin-top: 20px;
+}
+
+.noUi-connect {
+    background-color: @blue;
+}
+
+.noUi-horizontal {
+    height: 3px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    background-color: @blue;
+    top: -5px;
+    border: 0;
+    box-shadow: none;
+    &::before {
+        display: none;
+    }
+    &::after {
+        display: none;
     }
 }

@@ -14,7 +14,29 @@ Vue.component('card', {
         '<li>PSNGS: {{psngs}}</li>' +
         '</ul>' +
         '</div>' +
+        '</div>'
+});
+
+Vue.component('checkbox-filter', {
+    model: {
+        prop: 'filteredPilots',
+        event: 'change'
+    },
+    props: ['pilotname', 'piloturl', 'filteredPilots'],
+    template: '<div class="checkbox-filters">' +
+        '<input type="checkbox" v-bind:value="piloturl" v-model="model"></input>' +
+        '<label>{{pilotname}}</label>' +
         '</div>',
+    computed: {
+        model: {
+            get() {
+                return this.filteredPilots;
+            },
+            set(value) {
+                this.$emit('change', value);
+            },
+        },
+    }
 });
 
 var app = new Vue({
@@ -22,11 +44,20 @@ var app = new Vue({
     data: {
         starshipsArr: [],
         shownStarships: [],
+        shownStarshipsCount: 0,
         nextUrl: 'https://swapi.co/api/starships/',
         moreStarships: true,
         sorting: {
             param: '',
             text: 'SORT'
+        },
+        pilotsArr: [],
+        shownFilters: 5,
+        filteredPilots: []
+    },
+    watch: {
+        filteredPilots: function(newPilots) {
+            this.applyFilters(newPilots)
         }
     },
     methods: {
@@ -51,26 +82,29 @@ var app = new Vue({
             var lastShips = this.starshipsArr.slice(this.shownStarships.length, this.starshipsArr.length);
             if (lastShips.length < 6) {
                 if (this.nextUrl) {
-                    this.getData(this.nextUrl).then(function () {
+                    this.getData(this.nextUrl, this.processStarshipsData).then(function () {
                         var nextShips = app.starshipsArr.slice(app.shownStarships.length, app.shownStarships.length + 6);
                         app.showStarships(nextShips);
                     });
+                    this.shownStarshipsCount = this.shownStarships.length;
                 } else {
                     this.showStarships(lastShips);
                     this.moreStarships = false;
+                    this.shownStarshipsCount = this.shownStarships.length;
                 }
             } else {
                 var nextShips = this.starshipsArr.slice(this.shownStarships.length, this.shownStarships.length + 6);
                 this.showStarships(nextShips);
+                this.shownStarshipsCount = this.shownStarships.length;
             }
         },
 
         sortBy: function (param) {
             return function (a, b) {
-                if (a[param] === 'unknown' ) {
+                if (a[param] === 'unknown') {
                     return 1;
                 }
-                if (b[param] === 'unknown' ) {
+                if (b[param] === 'unknown') {
                     return -1;
                 }
                 return a[param] - b[param];
@@ -83,22 +117,61 @@ var app = new Vue({
             return this.shownStarships = shipsArr.slice().sort(this.sortBy(param));
         },
 
-        getData: function (url) {
+        processStarshipsData: function (data) {
+            app.nextUrl = data.next;
+            app.starshipsArr = app.starshipsArr.concat(data.results);
+        },
+
+        applyFilters: function (filtersArr) {
+            var filterByPilots = function (ship) {
+                var intersection = ship.pilots.filter(function (pilot) {
+                    return filtersArr.indexOf(pilot) !== -1;
+                });
+                return intersection.length > 0;
+            }
+
+            this.shownStarships = this.shownStarships.filter(filterByPilots);
+        },
+
+        getPeople: function (nextUrl) {
+            if (nextUrl) {
+                this.getData(nextUrl, function (data) {
+                    app.pilotsArr = app.pilotsArr.concat(data.results.filter(function (pilot) {
+                        return pilot.starships.length > 0;
+                    }));
+                    app.getPeople(data.next);
+                });
+            }
+        },
+
+        getData: function (url, dataFunc) {
             return fetch(url)
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (data) {
-                    app.nextUrl = data.next;
-                    app.starshipsArr = app.starshipsArr.concat(data.results);
-                });
+                .then(dataFunc);
         }
     },
 
     mounted: function () {
-        this.getData(this.nextUrl).then(function () {
+        this.getData(this.nextUrl, this.processStarshipsData).then(function () {
             app.showStarships(app.starshipsArr.slice(0, 6));
         });
+
+        this.getPeople('https://swapi.co/api/people/');
+
+        var sliders = document.querySelectorAll('.range');
+        for (i = 0; i < sliders.length; i++) {
+            noUiSlider.create(sliders[i], {
+                start: [40, 60],
+                behaviour: 'drag',
+                connect: true,
+                range: {
+                    'min': 20,
+                    'max': 80
+                }
+            });
+        }
     }
 });
 

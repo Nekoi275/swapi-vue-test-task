@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../node_modules/nouislider/distribute/nouislider.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/grid.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -68,13 +69,25 @@
                         <div class="sidebar">
                             <div class="pilots-header">
                                 <h2>Pilots</h2>
-                                <span class="blue-text counter">()</span>
+                                <span class="blue-text counter">({{pilotsArr.length}})</span>
                             </div>
-                            <input type="checkbox"></input>
-                            <span>Pilot name</span>
-                            <span class="blue-text view-all">View All</span>
+                            <checkbox-filter v-for="pilot in pilotsArr.slice(0, shownFilters)"
+                                v-bind:pilotname="pilot.name" v-bind:piloturl="pilot.url" v-model="filteredPilots">
+                            </checkbox-filter>
+                            <span class="blue-text view-all" v-on:click="shownFilters=pilotsArr.length"
+                                v-show="shownFilters < pilotsArr.length">View All</span>
                             <h2>Crew size</h2>
-                            <input type="range"></range>
+                            <div class="range-values">
+                                <div class="min"></div>
+                                <div class="max"></div>
+                            </div>
+                            <div class="range"></div>
+                            <h2>Passengers</h2>
+                            <div class="range-values">
+                                <div class="min"></div>
+                                <div class="max"></div>
+                            </div>
+                            <div class="range"></div>
                         </div>
                     </div>
                     <div class="col xs-5 sm-5 md-3 lg-3">
@@ -87,7 +100,8 @@
                                 </div>
                                 <ul class="dropdown-content">
                                     <li v-on:click="sortShips(shownStarships, 'crew', 'BY CREW SIZE')">BY CREW SIZE</li>
-                                    <li v-on:click="sortShips(shownStarships, 'cost_in_credits', 'COST IN CREDITS')">COST IN CREDITS</li>
+                                    <li v-on:click="sortShips(shownStarships, 'cost_in_credits', 'COST IN CREDITS')">
+                                        COST IN CREDITS</li>
                                     <li v-on:click="sortShips(shownStarships, 'MGLT', 'MGLT NUMBER')">MGLT NUMBER</li>
                                 </ul>
                             </div>
@@ -120,7 +134,8 @@
                             </card>
                         </div>
                         <div class="row-4">
-                            <div class="button show-more-button" v-on:click="showMoreStarships()" v-show="moreStarships">
+                            <div class="button show-more-button" v-on:click="showMoreStarships()"
+                                v-show="moreStarships">
                                 <span>VIEW MORE</span>
                                 <img src="img/show-more.svg">
                             </div>
@@ -167,6 +182,7 @@
             </div>
         </div>
     </div>
+    <script src="../node_modules/nouislider/distribute/nouislider.js"></script>
     <script src="../node_modules/vue/dist/vue.js"></script>
     <script src="js/main.js"></script>
 </body>
