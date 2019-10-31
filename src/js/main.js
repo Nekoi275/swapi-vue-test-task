@@ -169,66 +169,66 @@ var app = new Vue({
                 }
             }
 
-this.shownStarships = this.shownStarships.filter(filterByPilots)
-    .filter(filterByCrew).filter(filterByPassengers);
+            this.shownStarships = this.shownStarships.filter(filterByPilots)
+                .filter(filterByCrew).filter(filterByPassengers);
         },
 
-getPeople: function (nextUrl) {
-    if (nextUrl) {
-        this.getData(nextUrl, function (data) {
-            app.pilotsArr = app.pilotsArr.concat(data.results.filter(function (pilot) {
-                return pilot.starships.length > 0;
-            }));
-            app.getPeople(data.next);
-        });
-    }
-},
+        getPeople: function (nextUrl) {
+            if (nextUrl) {
+                this.getData(nextUrl, function (data) {
+                    app.pilotsArr = app.pilotsArr.concat(data.results.filter(function (pilot) {
+                        return pilot.starships.length > 0;
+                    }));
+                    app.getPeople(data.next);
+                });
+            }
+        },
 
-getData: function (url, dataFunc) {
-    return fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(dataFunc);
-}
+        getData: function (url, dataFunc) {
+            return fetch(url)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(dataFunc);
+        }
     },
 
-mounted: function () {
-    this.getData(this.nextUrl, this.processStarshipsData).then(function () {
-        app.showStarShips(app.starshipsArr.slice(0, 6));
-    });
+    mounted: function () {
+        this.getData(this.nextUrl, this.processStarshipsData).then(function () {
+            app.showStarShips(app.starshipsArr.slice(0, 6));
+        });
 
-    this.getPeople('https://swapi.co/api/people/');
+        this.getPeople('https://swapi.co/api/people/');
 
-    function initRange(selector, min, max, rangeName) {
-        noUiSlider.create(selector, {
-            start: [min, max],
-            connect: true,
-            range: {
-                'min': min,
-                '25%': max * 0.001,
-                '50%': max * 0.01,
-                '75%': max * 0.1,
-                'max': max
-            },
-            format: {
-                to: function (value) {
-                    return value.toFixed(0);
+        function initRange(selector, min, max, rangeName) {
+            noUiSlider.create(selector, {
+                start: [min, max],
+                connect: true,
+                range: {
+                    'min': min,
+                    '25%': max * 0.001,
+                    '50%': max * 0.01,
+                    '75%': max * 0.1,
+                    'max': max
                 },
-                from: function (value) {
-                    return Number(value);
+                format: {
+                    to: function (value) {
+                        return value.toFixed(0);
+                    },
+                    from: function (value) {
+                        return Number(value);
+                    }
                 }
-            }
-        });
-        selector.noUiSlider.on('set', function (values) {
-            app.filters[rangeName].min = Number(values[0]);
-            app.filters[rangeName].max = Number(values[1]);
-            app.showStarShips();
-        });
-    };
+            });
+            selector.noUiSlider.on('set', function (values) {
+                app.filters[rangeName].min = Number(values[0]);
+                app.filters[rangeName].max = Number(values[1]);
+                app.showStarShips();
+            });
+        };
 
-    initRange(document.querySelector('.crew-range'), 1, 342953, 'crewRange');
-    initRange(document.querySelector('.psngs-range'), 0, 843342, 'psngsRange');
-}
+        initRange(document.querySelector('.crew-range'), 1, 342953, 'crewRange');
+        initRange(document.querySelector('.psngs-range'), 0, 843342, 'psngsRange');
+    }
 });
 
