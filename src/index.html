@@ -78,16 +78,16 @@
                                 v-show="shownFilters < pilotsArr.length">View All</span>
                             <h2>Crew size</h2>
                             <div class="range-values">
-                                <div class="min"></div>
-                                <div class="max"></div>
+                                <div class="min">{{filters.crewRange.min}}</div>
+                                <div class="max">{{filters.crewRange.max}}</div>
                             </div>
-                            <div class="range"></div>
+                            <div class="range crew-range"></div>
                             <h2>Passengers</h2>
                             <div class="range-values">
-                                <div class="min"></div>
-                                <div class="max"></div>
+                                <div class="min">{{filters.psngsRange.min}}</div>
+                                <div class="max">{{filters.psngsRange.max}}</div>
                             </div>
-                            <div class="range"></div>
+                            <div class="range psngs-range"></div>
                         </div>
                     </div>
                     <div class="col xs-5 sm-5 md-3 lg-3">
