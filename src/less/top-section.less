@@ -11,7 +11,14 @@
     display: flex;
     margin: auto;
     width: 100%;
-    max-width: 412px;
+    max-width: 412px; 
+    &.single-page {
+        max-width: 250px;
+        z-index: 3;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .large-text {
@@ -28,6 +35,9 @@
 .top-section-content {
     position: relative;
     box-sizing: border-box;
+    &.single-page {
+        padding-top: 0;
+    }
 }
 
 @media (min-width: 0) {
@@ -40,6 +50,12 @@
         margin-top: 0;
         position: absolute;
         top: 302px;
+        &.single-page {
+            position: relative;
+            display: block;
+            top: 260px;
+            margin: 10px;
+        }
     }
 }
 
@@ -54,6 +70,13 @@
         font-size: 100px;
         position: relative;
         top: 0;
+        &.single-page {
+            position: relative;
+            max-width: 1000px;
+            display: flex;
+            margin: auto;
+            top: 0;
+        }
     }
 }
 
@@ -64,5 +87,13 @@
 
     .large-text {
         font-size: 132px;
+        &.single-page {
+            position: relative;
+            max-width: 1000px;
+            display: flex;
+            margin: auto;
+            padding-top: 65px;
+            top: 0;
+        }
     }
 }

@@ -10,53 +10,71 @@
     margin-right: auto;
     margin-bottom: 10px;
     flex-direction: column;
-    .card-header {
-        background-color: @black;
-        height: 220px;
-        color: @white;
-        position: relative;
-        border-radius: 11px;
-        padding: 15px;
-        box-sizing: border-box;
-        cursor: pointer;
+}
+
+.card-header {
+    background-color: @black;
+    height: 220px;
+    color: @white;
+    position: relative;
+    border-radius: 11px;
+    padding: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    &.single-page {
+        width: 340px;
+        height: 300px;
+        cursor: auto;
+        &:hover {
+            background-color: @black;
+        }
+
+        h5, h4 {
+            margin-left: 40px;
+        }
 
         h5 {
-            margin-top: 100px;
-            text-transform: uppercase;
-        }
-
-        .card-open-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            border-radius: 100px;
-            background-color: @white;
-            background-repeat: no-repeat;
-            background-position: center;
-            display: none;
-        }
-
-        &:hover {
-            background-color: @blue;
-
-            .card-open-icon {
-                display: block;
-            }
+            margin-top: 150px;
         }
     }
-    
-    .card-content {
-        > h1 {
-            font-weight: bold;
-            font-size: 18px;
-            padding: 10px 0 5px 0;
+
+    h5 {
+        margin-top: 100px;
+        text-transform: uppercase;
+    }
+
+    .card-open-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        border-radius: 100px;
+        background-color: @white;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: none;
+    }
+
+    &:hover {
+        background-color: @blue;
+
+        .card-open-icon {
+            display: block;
         }
-        > ul {
-            > li {
-                padding: 5px 0 5px 0;
-            }
+    }
+}
+
+.card-content {
+    > h1 {
+        font-weight: bold;
+        font-size: 18px;
+        padding: 10px 0 5px 0;
+    }
+    > ul {
+        > li {
+            padding: 5px 0 5px 0;
         }
     }
 }
