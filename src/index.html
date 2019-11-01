@@ -31,8 +31,9 @@
                         <li>CTA block</li>
                         <li>Footer</li>
                     </ul>
-                    <ul class="menu-mobile">
-                        <img class="cross-icon" src="img/cross-icon.svg" />
+                    <ul class="menu-mobile" v-show="mobileMenuOpened">
+                        <img class="logo-mobile" src="img/logo.svg" />
+                        <img class="cross-icon" v-on:click="mobileMenuOpened=!mobileMenuOpened" src="img/cross-icon.svg" />
                         <li>Hero</li>
                         <li>List</li>
                         <li>CTA block</li>
@@ -41,7 +42,7 @@
                             <div class="button sign-up-button hidden-md visible-xs">FAKE SIGN UP</div>
                         </li>
                     </ul>
-                    <img class="burger-icon hidden-lg hidden-md visible-xs" src="img/burger-menu.svg" />
+                    <img class="burger-icon hidden-lg hidden-md visible-xs" v-on:click="mobileMenuOpened=!mobileMenuOpened" src="img/burger-menu.svg" />
                     <div class="button sign-up-button hidden-xs visible-md">FAKE SIGN UP</div>
                 </nav>
             </div>

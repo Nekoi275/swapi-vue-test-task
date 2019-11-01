@@ -64,7 +64,8 @@ var app = new Vue({
                 min: 0,
                 max: 843342
             }
-        }
+        },
+        mobileMenuOpened: false
     },
     watch: {
         filteredPilots: function () {

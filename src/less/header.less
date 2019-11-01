@@ -25,9 +25,6 @@ nav {
 
 .menu-mobile {
     background-color: @white;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3 all ease;
     position: fixed;
     top: 0;
     left: 0;
@@ -38,15 +35,10 @@ nav {
     display: flex;
     align-items: center;
     flex-direction: column;
-    z-index: 5;
+    z-index: 20;
 
     > li {
         margin: 20px;
-    }
-    
-    &.active {
-        opacity: 1;
-        visibility: visible;
     }
 }
 
@@ -62,7 +54,8 @@ nav {
     right: 30px;
 }
 
-.logo {
-    position: relative;
-    z-index: 6;
+.logo-mobile {
+    position: absolute;
+    top: 35px;
+    left: 15px;
 }
