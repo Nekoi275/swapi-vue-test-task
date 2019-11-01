@@ -65,7 +65,8 @@ var app = new Vue({
                 max: 843342
             }
         },
-        mobileMenuOpened: false
+        mobileMenuOpened: false,
+        filtersOpened: false
     },
     watch: {
         filteredPilots: function () {
@@ -228,8 +229,10 @@ var app = new Vue({
             });
         };
 
-        initRange(document.querySelector('.crew-range'), 1, 342953, 'crewRange');
-        initRange(document.querySelector('.psngs-range'), 0, 843342, 'psngsRange');
+        initRange(document.querySelectorAll('.crew-range')[0], 1, 342953, 'crewRange');
+        initRange(document.querySelectorAll('.psngs-range')[0], 0, 843342, 'psngsRange');
+        initRange(document.querySelectorAll('.crew-range')[1], 1, 342953, 'crewRange');
+        initRange(document.querySelectorAll('.psngs-range')[1], 0, 843342, 'psngsRange');
     }
 });
 

@@ -33,7 +33,8 @@
                     </ul>
                     <ul class="menu-mobile" v-show="mobileMenuOpened">
                         <img class="logo-mobile" src="img/logo.svg" />
-                        <img class="cross-icon" v-on:click="mobileMenuOpened=!mobileMenuOpened" src="img/cross-icon.svg" />
+                        <img class="cross-icon" v-on:click="mobileMenuOpened=!mobileMenuOpened"
+                            src="img/cross-icon.svg" />
                         <li>Hero</li>
                         <li>List</li>
                         <li>CTA block</li>
@@ -42,7 +43,8 @@
                             <div class="button sign-up-button hidden-md visible-xs">FAKE SIGN UP</div>
                         </li>
                     </ul>
-                    <img class="burger-icon hidden-lg hidden-md visible-xs" v-on:click="mobileMenuOpened=!mobileMenuOpened" src="img/burger-menu.svg" />
+                    <img class="burger-icon hidden-lg hidden-md visible-xs"
+                        v-on:click="mobileMenuOpened=!mobileMenuOpened" src="img/burger-menu.svg" />
                     <div class="button sign-up-button hidden-xs visible-md">FAKE SIGN UP</div>
                 </nav>
             </div>
@@ -108,27 +110,35 @@
                                     <li v-on:click="sortShips('MGLT', 'MGLT NUMBER')">MGLT NUMBER</li>
                                 </ul>
                             </div>
-                            <span class="counter blue-text filters-counter">()</span>
-                            <img class="hidden-lg hidden-md visible-xs-flex show-filters-icon"
-                                src="img/filters-icon.svg" />
-                            <img class="hidden-lg hidden-md visible-xs-flex close-filters-icon"
-                                src="img/cross-icon.svg" />
+                            <span class="counter blue-text filters-counter">({{filteredPilots.length}})</span>
+                            <img class="hidden-lg hidden-md visible-xs-flex show-filters-icon" v-show="!filtersOpened"
+                                src="img/filters-icon.svg" v-on:click="filtersOpened=!filtersOpened" />
+                            <img class="hidden-lg hidden-md visible-xs-flex close-filters-icon" v-show="filtersOpened"
+                                v-on:click="filtersOpened=!filtersOpened" src="img/cross-icon.svg" />
                         </div>
                         <div class="row-4 cards-container">
-                            <div class="sidebar sidebar-mobile">
-                                <div class="apply-filters">
-                                    <span class="blue-text">APPLY FILTERS</span>
-                                    <span class="counter blue-text">()</span>
-                                </div>
+                            <div class="sidebar sidebar-mobile hidden-md visible-xs" v-show="filtersOpened">
                                 <div class="pilots-header">
                                     <h2>Pilots</h2>
-                                    <span class="blue-text counter">()</span>
+                                    <span class="blue-text counter">({{pilotsArr.length}})</span>
                                 </div>
-                                <input type="checkbox"></input>
-                                <span>Pilot name</span>
-                                <span class="blue-text view-all">View All</span>
+                                <checkbox-filter v-for="pilot in pilotsArr.slice(0, shownFilters)"
+                                    v-bind:pilotname="pilot.name" v-bind:piloturl="pilot.url" v-model="filteredPilots">
+                                </checkbox-filter>
+                                <span class="blue-text view-all" v-on:click="shownFilters=pilotsArr.length"
+                                    v-show="shownFilters < pilotsArr.length">View All</span>
                                 <h2>Crew size</h2>
-                                <input type="range"></range>
+                                <div class="range-values">
+                                    <div class="min">{{filters.crewRange.min}}</div>
+                                    <div class="max">{{filters.crewRange.max}}</div>
+                                </div>
+                                <div class="range crew-range"></div>
+                                <h2>Passengers</h2>
+                                <div class="range-values">
+                                    <div class="min">{{filters.psngsRange.min}}</div>
+                                    <div class="max">{{filters.psngsRange.max}}</div>
+                                </div>
+                                <div class="range psngs-range"></div>
                             </div>
                             <card v-for="starship in shownStarships" v-bind:name="starship.name"
                                 v-bind:crew="starship.crew" v-bind:mglt="starship.MGLT"
