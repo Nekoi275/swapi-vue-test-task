@@ -15,6 +15,7 @@
   font-size: 18px;
 }
 .info-card > h5 {
+  font-size: 60px;
   line-height: 65px;
   color: #0066FF;
 }
@@ -22,16 +23,15 @@
   .info-card {
     width: 100%;
   }
-  .info-card > h5 {
-    font-size: 40px;
+}
+@media (min-width: 600px) {
+  .info-card {
+    width: 45%;
   }
 }
 @media (min-width: 900px) {
   .info-card {
     width: auto;
-    min-width: 30%;
-  }
-  .info-card > h5 {
-    font-size: 60px;
+    min-width: 28%;
   }
 }
