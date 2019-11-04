@@ -1,5 +1,7 @@
 # swapi-vue
 
+Preview available [here](http://46.173.214.223/).
+
 ## Project setup
 ```
 npm install
