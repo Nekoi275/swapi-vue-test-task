@@ -1,0 +1,149 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier";
+  background-color: #FFFFFF;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+a,
+span,
+div,
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: normal;
+  font-family: "Courier";
+  list-style: none;
+  text-decoration: none;
+  line-height: 18px;
+}
+.black {
+  background-color: #000000;
+}
+.round-borders {
+  border-radius: 20px;
+}
+.background {
+  position: absolute;
+  height: 477px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+.blue {
+  background-color: #0066FF;
+}
+.blue-text {
+  font-family: "Courier";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 13px;
+  color: #0066FF;
+}
+h2 {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 24px;
+  padding: 30px 0 30px 0;
+}
+h5 {
+  font-family: "Archivo Black";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 45px;
+  line-height: 49px;
+}
+h4 {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 26px;
+}
+.our-starships {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 26px;
+  color: #212121;
+  margin: 100px 50px 30px 0;
+}
+.main-section {
+  margin-top: 20px;
+}
+.copy-link {
+  cursor: pointer;
+  color: #0066FF;
+  display: block;
+}
+@media (min-width: 0) {
+  .our-starships {
+    transform: none;
+  }
+  .button.drop-button {
+    width: 230px;
+  }
+  .button.up-scroll-button {
+    margin-bottom: 50px;
+  }
+  .copy-link {
+    margin-top: 40px;
+  }
+  .footer {
+    padding-bottom: 50px;
+  }
+  .footer-menu {
+    flex-direction: column-reverse;
+  }
+  .background.single-page {
+    height: 400px;
+  }
+  .main-section.single-page {
+    margin-top: 290px;
+  }
+}
+@media (min-width: 900px) {
+  .our-starships {
+    transform: rotate(270deg);
+  }
+  .button.drop-button {
+    width: 240px;
+  }
+  .button.up-scroll-button {
+    margin-bottom: 0;
+  }
+  .footer {
+    padding-bottom: 90px;
+  }
+  .footer-menu {
+    flex-direction: row;
+  }
+  .background.single-page {
+    height: 265px;
+  }
+  .copy-link {
+    margin-top: 100px;
+  }
+  .main-section.single-page {
+    margin-top: 160px;
+  }
+}
+@media (min-width: 1200px) {
+  .main-section.single-page {
+    margin-top: 60px;
+  }
+}

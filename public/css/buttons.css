@@ -1,0 +1,52 @@
+.button {
+  background-color: #212121;
+  color: #FFFFFF;
+  border-radius: 4px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+.button.sign-up-button {
+  width: 160px;
+}
+.button.show-more-button {
+  justify-content: center;
+  width: 240px;
+  display: flex;
+  margin: auto;
+  align-items: center;
+}
+.button.show-more-button > span {
+  margin-right: 30px;
+}
+.button.contact-button {
+  background-color: #000000;
+  padding: 25px;
+  border-radius: 0;
+  margin-top: 20px;
+  justify-content: space-between;
+  display: flex;
+}
+.button.contact-button > span {
+  font-family: 'Archivo Black';
+}
+.button.drop-button {
+  justify-content: space-between;
+  display: flex;
+  border-bottom: 1px solid #FFFFFF;
+}
+.button.drop-button > .open-drop-down {
+  display: block;
+}
+.button.drop-button > .close-drop-down {
+  display: none;
+}
+.button.drop-button:hover > .open-drop-down {
+  display: none;
+}
+.button.drop-button:hover > .close-drop-down {
+  display: block;
+}
+.button:hover {
+  background-color: #666464;
+}

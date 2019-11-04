@@ -1,0 +1,37 @@
+.info-card {
+  height: 250px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 11px;
+  box-sizing: border-box;
+  padding: 30px;
+  display: flex;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info-card > h1 {
+  font-weight: bold;
+  font-size: 18px;
+}
+.info-card > h5 {
+  line-height: 65px;
+  color: #0066FF;
+}
+@media (min-width: 0) {
+  .info-card {
+    width: 100%;
+  }
+  .info-card > h5 {
+    font-size: 40px;
+  }
+}
+@media (min-width: 900px) {
+  .info-card {
+    width: auto;
+    min-width: 30%;
+  }
+  .info-card > h5 {
+    font-size: 60px;
+  }
+}

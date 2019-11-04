@@ -1,0 +1,76 @@
+.card {
+  display: flex;
+  margin-right: auto;
+  margin-bottom: 10px;
+  flex-direction: column;
+}
+.card-header {
+  background-color: #212121;
+  height: 220px;
+  color: #FFFFFF;
+  position: relative;
+  border-radius: 11px;
+  padding: 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.card-header.single-page {
+  width: 340px;
+  height: 300px;
+  cursor: auto;
+}
+.card-header.single-page:hover {
+  background-color: #212121;
+}
+.card-header.single-page h5,
+.card-header.single-page h4 {
+  margin-left: 40px;
+}
+.card-header.single-page h5 {
+  margin-top: 150px;
+}
+.card-header h5 {
+  margin-top: 100px;
+  text-transform: uppercase;
+}
+.card-header .card-open-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+}
+.card-header:hover {
+  background-color: #0066FF;
+}
+.card-header:hover .card-open-icon {
+  display: block;
+}
+.card-content > h1 {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 0 5px 0;
+}
+.card-content > ul > li {
+  padding: 5px 0 5px 0;
+}
+@media (min-width: 0) {
+  .card {
+    width: 100%;
+  }
+}
+@media (min-width: 600px) {
+  .card {
+    width: 45%;
+  }
+}
+@media (min-width: 900px) {
+  .card {
+    width: 30%;
+  }
+}
