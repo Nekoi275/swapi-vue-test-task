@@ -10,10 +10,10 @@
             <form>
               <input type="email" placeholder="EMAIL" />
               <input type="tel" placeholder="PHONE" />
-              <div class="button contact-button">
+              <button class="button contact-button" type="submit">
                 <span>GET YOUR COUPON</span>
                 <img src="img/arrow-icon.svg" />
-              </div>
+              </button>
             </form>
           </div>
           <div class="col xs-4 sm-4 md-2 lg-2">

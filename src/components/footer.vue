@@ -9,7 +9,7 @@
           <li>CTA block</li>
           <li>Footer</li>
         </ul>
-        <div class="button up-scroll-button" v-on:click="this.scrollToTop">MNE NAVERH</div>
+        <button class="button up-scroll-button" v-on:click="this.scrollToTop">MNE NAVERH</button>
       </nav>
     </div>
   </div>

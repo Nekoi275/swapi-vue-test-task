@@ -5,6 +5,7 @@
   padding: 15px;
   text-align: center;
   cursor: pointer;
+  border: none;
 }
 .button.sign-up-button {
   width: 160px;

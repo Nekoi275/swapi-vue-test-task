@@ -74,14 +74,14 @@
               ></card>
             </div>
             <div class="row-4">
-              <div
+              <button
                 class="button show-more-button"
                 v-on:click="showMoreStarships()"
                 v-show="moreStarships"
               >
                 <span>VIEW MORE</span>
                 <img src="img/show-more.svg" />
-              </div>
+              </button>
             </div>
           </div>
         </div>

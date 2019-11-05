@@ -21,7 +21,7 @@
           <li>CTA block</li>
           <li>Footer</li>
           <li>
-            <div class="button sign-up-button hidden-md visible-xs">FAKE SIGN UP</div>
+            <button class="button sign-up-button hidden-md visible-xs">FAKE SIGN UP</button>
           </li>
         </ul>
         <img
@@ -29,7 +29,7 @@
           v-on:click="mobileMenuOpened=!mobileMenuOpened"
           src="img/burger-menu.svg"
         />
-        <div class="button sign-up-button hidden-xs visible-md">FAKE SIGN UP</div>
+        <button class="button sign-up-button hidden-xs visible-md">FAKE SIGN UP</button>
       </nav>
     </div>
   </div>
