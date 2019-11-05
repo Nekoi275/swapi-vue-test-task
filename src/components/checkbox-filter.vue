@@ -1,8 +1,5 @@
 <template>
-  <div class="checkbox-filters">
-    <input type="checkbox" v-bind:value="piloturl" v-model="model" />
-    <label>{{pilotname}}</label>
-  </div>
+    <label><input type="checkbox" v-bind:value="piloturl" v-model="model" />{{pilotname}}</label>
 </template>
 
 <script>

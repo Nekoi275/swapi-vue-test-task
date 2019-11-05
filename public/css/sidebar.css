@@ -13,10 +13,14 @@
   flex: 20%;
   padding-top: 20px;
 }
+.sidebar .checkbox-container {
+  display: block;
+}
 .sidebar input,
 .sidebar label {
-  display: inline;
+  display: inline-block;
   margin: 20px 0 0 20px;
+  cursor: pointer;
 }
 .sidebar span {
   margin-top: 20px;

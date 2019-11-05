@@ -4,13 +4,15 @@
       <h2>Pilots</h2>
       <span class="blue-text counter">({{pilotsArr.length}})</span>
     </div>
-    <checkboxfilter
-      v-for="pilot in pilotsArr.slice(0, shownFilters)"
-      v-bind:key="pilot.id"
-      v-bind:pilotname="pilot.name"
-      v-bind:piloturl="pilot.url"
-      v-model="filters.pilots"
-    ></checkboxfilter>
+    <div class="checkbox-container">
+      <checkboxfilter
+        v-for="pilot in pilotsArr.slice(0, shownFilters)"
+        v-bind:key="pilot.id"
+        v-bind:pilotname="pilot.name"
+        v-bind:piloturl="pilot.url"
+        v-model="filters.pilots"
+      ></checkboxfilter>
+    </div>
     <span
       class="blue-text view-all"
       v-on:click="shownFilters=pilotsArr.length"
@@ -73,15 +75,18 @@ export default {
 }
 .sidebar input,
 .sidebar label {
-  display: inline;
-  margin: 20px 0 0 20px;
+  display: inline-block;
+  margin: 20px 5px 0 20px;
+  cursor: pointer;
 }
 .sidebar span {
   margin-top: 20px;
 }
-.sidebar input {
-  cursor: pointer;
+
+.checkbox-container {
+  display: block;
 }
+
 .sidebar .view-all {
   display: block;
   cursor: pointer;
