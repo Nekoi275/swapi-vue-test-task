@@ -138,11 +138,17 @@ h4 {
   .copy-link {
     margin-top: 100px;
   }
+  .main-section {
+    margin-top: 80px;
+  }
   .main-section.single-page {
     margin-top: 160px;
   }
 }
 @media (min-width: 1200px) {
+  .main-section {
+    margin-top: 20px;
+  }
   .main-section.single-page {
     margin-top: 60px;
   }

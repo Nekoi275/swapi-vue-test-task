@@ -44,7 +44,7 @@
                   <li v-on:click="sortShips('MGLT', 'MGLT NUMBER')">MGLT NUMBER</li>
                 </ul>
               </div>
-              <span class="counter blue-text filters-counter">({{filters.pilots.length}})</span>
+              <span class="hidden-lg hidden-md visible-xcounter blue-text filters-counter">({{filters.pilots.length}})</span>
               <img
                 class="hidden-lg hidden-md visible-xs-flex show-filters-icon"
                 v-show="!mobilefiltersOpened"
