@@ -44,7 +44,9 @@
                   <li v-on:click="sortShips('MGLT', 'MGLT NUMBER')">MGLT NUMBER</li>
                 </ul>
               </div>
-              <span class="hidden-lg hidden-md visible-xcounter blue-text filters-counter">({{filters.pilots.length}})</span>
+              <span
+                class="hidden-lg hidden-md visible-xcounter blue-text filters-counter"
+              >({{filters.pilots.length}})</span>
               <img
                 class="hidden-lg hidden-md visible-xs-flex show-filters-icon"
                 v-show="!mobilefiltersOpened"
@@ -159,7 +161,7 @@ export default {
     },
     processStarshipsData: function(data) {
       this.nextUrl = data.next;
-      var ships = data.results.map(function(ship) {
+      let ships = data.results.map(function(ship) {
         ship.id = ship.url.split("/")[5];
         if (!ship.name.match(/[\s-]/g)) {
           ship.short_name = ship.name.slice(0, 2);
@@ -183,28 +185,25 @@ export default {
       this.sortShips(this.sorting.param, this.sorting.text);
     },
     showMoreStarships: function() {
-      var self = this;
-      var lastShips = this.starshipsArr.slice(
+      let lastShips = this.starshipsArr.slice(
         this.shownStarshipsCount,
         this.starshipsArr.length
       );
       if (lastShips.length < 6) {
         if (this.nextUrl) {
-          this.getData(this.nextUrl, this.processStarshipsData).then(
-            function() {
-              var nextShips = self.starshipsArr.slice(
-                self.shownStarshipsCount,
-                self.shownStarshipsCount + 6
-              );
-              self.showStarShips(nextShips);
-            }
-          );
+          this.getData(this.nextUrl, this.processStarshipsData).then(() => {
+            let nextShips = this.starshipsArr.slice(
+              this.shownStarshipsCount,
+              this.shownStarshipsCount + 6
+            );
+            this.showStarShips(nextShips);
+          });
         } else {
           this.showStarShips(lastShips);
           this.moreStarships = false;
         }
       } else {
-        var nextShips = this.starshipsArr.slice(
+        let nextShips = this.starshipsArr.slice(
           this.shownStarshipsCount,
           this.shownStarshipsCount + 6
         );
@@ -212,19 +211,18 @@ export default {
       }
     },
     applyFilters: function() {
-      var self = this;
-      var filterByPilots = function(ship) {
-        if (!self.filters.pilots.length) {
+      let filterByPilots = (ship) => {
+        if (!this.filters.pilots.length) {
           return true;
         } else {
-          var intersection = ship.pilots.filter(function(pilot) {
-            return self.filters.pilots.indexOf(pilot) !== -1;
+          let intersection = ship.pilots.filter(pilot => {
+            return this.filters.pilots.indexOf(pilot) !== -1;
           });
           return intersection.length > 0;
         }
       };
 
-      var filterRange = function(paramName, range) {
+      let filterRange = (paramName, range) => {
         return function(ship) {
           if (ship[paramName] === "unknown") {
             return true;
@@ -237,31 +235,33 @@ export default {
         };
       };
 
-      var filterByCrew = filterRange("crew", self.filters.crewRange);
-      var filterByPassengers = filterRange("passengers", self.filters.psngsRange);
-      
+      let filterByCrew = filterRange("crew", this.filters.crewRange);
+      let filterByPassengers = filterRange(
+        "passengers",
+        this.filters.psngsRange
+      );
+
       this.shownStarships = this.shownStarships
         .filter(filterByPilots)
         .filter(filterByCrew)
         .filter(filterByPassengers);
     },
     getPeople: function(nextUrl) {
-      var self = this;
       if (nextUrl) {
-        this.getData(nextUrl, function(data) {
-          self.pilotsArr = self.pilotsArr.concat(
+        this.getData(nextUrl, data => {
+          this.pilotsArr = this.pilotsArr.concat(
             data.results.filter(function(pilot) {
               return pilot.starships.length > 0;
             })
           );
-          self.getPeople(data.next);
+          this.getPeople(data.next);
         });
       }
     },
     sortShips: function(param, sortingText) {
       this.sorting.text = sortingText;
       this.sorting.param = param;
-      var sortBy = function(param) {
+      let sortBy = function(param) {
         return function(a, b) {
           if (a[param] === "unknown") {
             return 1;
@@ -278,9 +278,8 @@ export default {
     }
   },
   mounted: function() {
-    var self = this;
-    this.getData(this.nextUrl, this.processStarshipsData).then(function() {
-      self.showStarShips(self.starshipsArr.slice(0, 6));
+    this.getData(this.nextUrl, this.processStarshipsData).then(() => {
+      this.showStarShips(this.starshipsArr.slice(0, 6));
     });
     this.getPeople("https://swapi.co/api/people/");
   }

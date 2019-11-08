@@ -92,7 +92,7 @@ export default {
   props: ["starship"],
   methods: {
     copyToClipboard: function() {
-      var el = document.createElement("textarea");
+      let el = document.createElement("textarea");
       el.value = this.starship.url;
       document.body.appendChild(el);
       el.select();

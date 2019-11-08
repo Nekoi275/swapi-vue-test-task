@@ -17,7 +17,6 @@ export default {
   props: ["min", "max"],
   methods: {
     initRange: function(min, max) {
-      var self = this;
       var rangeElem = this.$el.querySelector(".range");
       noUiSlider.create(rangeElem, {
         start: [min, max],
@@ -38,8 +37,8 @@ export default {
           }
         }
       });
-      rangeElem.noUiSlider.on("set", function(values) {
-        self.$emit("state", { min: Number(values[0]), max: Number(values[1]) });
+      rangeElem.noUiSlider.on("set", (values) => {
+        this.$emit("state", { min: Number(values[0]), max: Number(values[1]) });
       });
     }
   },
