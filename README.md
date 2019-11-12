@@ -1,6 +1,7 @@
 # swapi-vue
 
-Preview available [here](http://46.173.214.223/).
+Test project with Vue.js, using [Star Wars API](https://swapi.co) as back end. 
+The project is a small 'starship store' with sorting, filtering and single ship pages available.
 
 ## Project setup
 ```
